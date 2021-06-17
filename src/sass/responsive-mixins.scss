@@ -1,0 +1,60 @@
+// Breakpoints
+$ipad-pro-portrait-breakpoint:  "(min-device-width : 1024px) and
+                                 (max-device-width : 1024px) and
+                                 (min-device-height : 1366px) and
+                                 (max-device-height : 1366px) and
+                                 (min-width: 1024px) and (max-width: 1024px)";
+$ipad-pro-landscape-breakpoint: "(min-device-width : 1366px) and
+                                 (max-device-width : 1366px) and
+                                 (min-device-height : 1024px) and
+                                 (max-device-height : 1024px) and
+                                 (min-width: 1366px) and (max-width: 1366px)";
+$ipad-portrait-breakpoint:      "(min-device-width : 768px) and
+                                 (max-device-width : 768px) and
+                                 (min-device-height : 1024px) and
+                                 (max-device-height : 1024px) and
+                                 (min-width: 768px) and (max-width: 768px)";
+$ipad-landscape-breakpoint:      "(min-device-width : 1024px) and
+                                  (max-device-width : 1024px) and
+                                  (min-device-height : 768px) and
+                                  (max-device-height : 768px) and
+                                  (min-width: 1024px) and (max-width: 1024px)";
+$iphoneX-portrait-breakpoint:     "(min-device-width : 375px) and
+                                  (max-device-width : 375px) and
+                                  (min-device-height : 812px) and
+                                  (max-device-height : 812px) and
+                                  (min-width: 375px) and (max-width: 375px)";
+$iphoneX-landscape-breakpoint:    "(min-device-width : 812px) and
+                                  (max-device-width : 812px) and
+                                  (min-device-height : 375px) and
+                                  (max-device-height : 375px) and
+                                  (min-width: 812px) and (max-width: 812px)";
+$iphone-portrait-breakpoint:     "(min-device-width : 375px) and
+                                  (max-device-width : 375px) and
+                                  (min-device-height : 687px) and
+                                  (max-device-height : 687px) and
+                                  (min-width: 375px) and (max-width: 375px)";
+$iphone-landscape-breakpoint:    "(min-device-width : 687px) and
+                                  (max-device-width : 678px) and
+                                  (min-device-height : 375px) and
+                                  (max-device-height : 375px) and
+                                  (min-width: 687px) and (max-width: 687px)";
+// iPad Pro Mixins
+@mixin ipad-pro-portrait {
+   @media only screen and #{$ipad-pro-portrait-breakpoint} {
+     .cards__ipad-pro-portrait {
+        flex: 0 0 100%!important;
+        max-width: 100%!important;
+        margin-bottom: 2rem;
+      }
+   }
+}
+
+@mixin ipad-pro-landscape {
+   @media only screen and #{$ipad-pro-landscape-breakpoint} {
+      .ipad-pro {
+        flex: 0 0 100%!important;
+        max-width: 100%!important;
+      }
+   }
+}

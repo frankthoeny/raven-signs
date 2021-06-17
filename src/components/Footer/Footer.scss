@@ -1,0 +1,37 @@
+html {
+
+
+  body {
+    position: relative;
+    min-height: 100%;
+  }
+  .footer {
+      position: absolute;
+      bottom: -20rem;
+      width: 100%;
+      height: 10rem;
+      line-height: 30px;
+      background-color: #343a40 !important;
+  // }
+  // .footer {
+  //    width: 100%;
+  //    padding: 10px;
+  //    text-align: center;
+  //    color: #eeeeee;
+  //    border-top: 1px solid #888888;
+  //    background-color: #111111;
+
+      nav {
+        margin-top: 2px;
+        padding: 20px 0 30px 0;
+
+        >a {
+           // display: inline-block;
+           // margin: 0 10px;
+           // font-size: 11pt;
+           // text-decoration: none;
+           // color: #a8a8a8;
+         }
+      }
+  }
+}

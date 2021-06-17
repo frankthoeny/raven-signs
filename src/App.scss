@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+body, #app {
+   position: relative;
+   height: 100%;
+}
+main, article {
+  height: 100%;
+}
+.layout {
+  position: relative;
+  min-height: 20rem;
+  padding-top: 7rem; /* Margin top by Toolbar height */
+  margin-bottom: 10rem; /* Margin bottom by footer height */
+}
+.backdrop {
+  position: absolute;
+  width: 100%;
+  height:100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+.main {
+  margin-top: 65px;
+  padding: 20px;
+}
+
+.hidden {
+  display:none;
+  visibility: hidden;
+  width:0;
+}
+.content-border-box-outer {
+  margin-bottom: 2rem;
+}
+.content-border-box {
+    border-style: solid;
+    border-width: 2px 2px 2px;
+    border-color: #ddd;
+    padding-top: 10px;
+    margin: 0 auto;
+    background: white;
+    padding: 10px;
+}
+.content-border-box-header {
+    font-size: 22px;
+    color: #ac5600;
+    border-bottom: 1px dotted #ddd;
+    padding-bottom: .4em;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+
+//Mixins
+@import 'sass/responsive-mixins.scss';
+@include ipad-pro-landscape;
+@include ipad-pro-portrait;
+
+
+
+
+// img {
+//     vertical-align: middle;
+//     border-style: none;
+//
+//     .responsive {
+//        max-width: 100%;
+//        height: auto;
+//      }
+// }
+
+// .flex-box {
+//   display:flex;
+// }
+// .flex-1 {
+//   flex:1;
+// }

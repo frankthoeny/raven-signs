@@ -1,0 +1,163 @@
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const LiveReloadPlugin = require('webpack-livereload-plugin');
+
+module.exports = {
+  entry: {
+    app: './client/src/index.js'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index_bundle.js',
+    publicPath: '/'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(scss)$/,
+        exclude: /node_modules/,
+        use: [
+          // fallback to style-loader in development
+          process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader', // translates CSS into CommonJS
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+         ]
+      },
+      {
+        test: /\.(css)$/,
+        exclude: /node_modules/,
+        use: [
+             'style-loader',
+             'css-loader'
+           ]
+       },
+       {
+          test: /\.(jpg|png|gif|svg|pdf)$/,
+          use: {
+             loader: 'file-loader',
+             options: {
+                name:'[name].[ext]',
+                outputPath: path.resolve(__dirname, 'dist/images'),
+                publicPath: './client/public/images'
+
+              }
+          }
+      },
+      {
+         test: /\.(csv|tsv)$/,
+         use: [
+           'csv-loader'
+         ]
+       },
+       {
+         test: /\.xml$/,
+         use: [
+           'xml-loader'
+         ]
+       }
+    ]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    compress: true,
+    port: 8080,
+    proxy : {
+      '/api/data': {
+           target: 'http://localhost:8080/api/data',
+           secure: false
+      },
+      '/api/auth/register': {
+           target: 'http://localhost:8080/api/auth/register',
+           ws: true,
+           secure: true,
+           bypass: function(req, res, proxyOptions) {
+               if (req.headers.accept.indexOf('html') !== -1) {
+                  console.log('Skipping proxy for browser request.');
+                  return '/index.html';
+               }
+          }
+      }
+    },
+    before: function(app, server) {
+      app.get("/api/data", (req, res) => {
+        res.send("hi from server"); // replace me with real data
+      });
+    },
+    after: function(app, server) {
+      app.post('/api/auth/register', function(req, res) {
+        if (!req.body.username || !req.body.password) {
+          res.json({success: false, msg: 'Please pass username and password.'});
+        } else {
+          var newUser = new User({
+            username: req.body.username,
+            password: req.body.password
+          });
+          // save the user
+          newUser.save(function(err) {
+            if (err) {
+              return res.json({success: false, msg: 'Username already exists.'});
+            }
+            res.json({success: true, msg: 'Successful created new user.'});
+          });
+        }
+      });
+
+      app.post('/api/auth/login', function(req, res) {
+        console.log(req.body);
+        User.findOne({
+          username: req.body.username
+        }, function(err, user) {
+          if (err) throw err;
+
+          if (!user) {
+            res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
+          } else {
+            // check if password matches
+            user.comparePassword(req.body.password, function (err, isMatch) {
+              if (isMatch && !err) {
+                // if user is found and password is right create a token
+                var token = jwt.sign(user.toJSON(), settings.secret);
+                // return the information including token as JSON
+                res.json({success: true, token: 'JWT ' + token});
+              } else {
+                res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
+              }
+            });
+          }
+        });
+      });
+    },
+    overlay: {
+      warnings: true,
+      errors: true
+    }
+  },
+  mode: 'development',
+  plugins: [
+    new CleanWebpackPlugin(),
+    new LiveReloadPlugin(),
+    new HtmlWebpackPlugin({
+      template: './client/public/index.html',
+      favicon: './client/public/favicon.ico'
+    }),
+
+     new MiniCssExtractPlugin({
+         filename: "[name].css",
+         chunkFilename: "[id].css"
+     }),
+
+     new CopyWebpackPlugin ([
+       { from: path.resolve(__dirname, 'client/public/images'), to: 'images' }
+     ])
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "name": "raven-signs",
+  "version": "1.0.0",
+  "description": "Testing the waters! This application was created without using create-react-app.",
+  "author": "Frank Thoeny",
+  "license": "ISC",
+  "keywords": [
+    "MERN",
+    "Webpack",
+    "Mongo",
+    "Mongoose",
+    "Bluebird",
+    "React JS",
+    "Express 4",
+    "Node",
+    "Passport",
+    "Axios",
+    "Bootstrap"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "create": "webpack",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "jwt-decode": "^2.2.0",
+    "mongoose": "^5.12.14",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.21.1",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.0.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-upgrade": "0.0.24",
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.1",
+    "bootstrap-scss": "^4.1.3",
+    "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^1.0.1",
+    "csv-loader": "^3.0.2",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "morgan": "^1.9.1",
+    "node-sass": "^4.14.1",
+    "normalize.scss": "^0.1.0",
+    "papaparse": "^4.6.2",
+    "postcss-loader": "^3.0.0",
+    "react-hot-loader": "^4.3.12",
+    "react-iframe": "^1.3.3",
+    "sass-loader": "^7.1.0",
+    "serve-favicon": "^2.5.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-livereload-plugin": "^2.1.1",
+    "xml-loader": "^1.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankthoeny/raven-signs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frankthoeny/raven-signs/issues"
+  },
+  "homepage": "https://github.com/frankthoeny/raven-signs#readme"
+}
